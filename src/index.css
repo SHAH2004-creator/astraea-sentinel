@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-industrial-bg: #FFFFFF;
+  --color-industrial-card: rgba(248, 250, 252, 0.8);
+  --color-industrial-accent: #2563EB;
+  --color-industrial-amber: #F59E0B;
+  --color-industrial-danger: #EF4444;
+  --color-industrial-border: rgba(15, 23, 42, 0.1);
+  --color-industrial-text: #0F172A;
+  --color-industrial-muted: #64748B;
+}
+
+@layer utilities {
+  .industrial-grid {
+    background-image: radial-gradient(rgba(15, 23, 42, 0.05) 1px, transparent 0);
+    background-size: 24px 24px;
+  }
+  .glass-card {
+    @apply bg-industrial-card backdrop-blur-md border border-industrial-border shadow-xl;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-industrial-bg text-industrial-text font-sans antialiased h-full;
+  }
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-ticker {
+  animation: ticker 60s linear infinite;
+}
+
+@keyframes neon-pulse {
+  0%, 100% { 
+    box-shadow: 0 0 5px rgba(239, 68, 68, 0.3), 0 0 10px rgba(239, 68, 68, 0.2);
+    opacity: 1; 
+  }
+  50% { 
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.4), 0 0 30px rgba(239, 68, 68, 0.2);
+    opacity: 0.8; 
+  }
+}
+
+.animate-neon-pulse {
+  animation: neon-pulse 2s ease-in-out infinite;
+}
+
+@keyframes progress-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-progress-shimmer {
+  animation: progress-shimmer 2s linear infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.1);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(15, 23, 42, 0.2);
+}
+
+/* Mermaid Customization */
+.mermaid svg {
+  @apply max-w-full h-auto mx-auto;
+}
+.mermaid .node rect, .mermaid .node circle, .mermaid .node ellipse, .mermaid .node polygon {
+  @apply transition-colors cursor-pointer;
+}
+.mermaid .edgePath path {
+  @apply stroke-slate-300;
+}
+.mermaid .nodeLabel {
+  @apply font-mono text-[10px] fill-slate-800;
+}
